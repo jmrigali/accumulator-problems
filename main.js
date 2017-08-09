@@ -434,13 +434,32 @@ If you pass 0,2 it should return false because the only number between 0 and 2 i
 If you pass 0,6 it should return true because between 0 and six (the numbers 1,2,3,4,5) there are three odds - 1, 3 and 5
 */
 
-
-
-
-
-
-
-
+function threeOdds (num1, num2) {
+  let arr = []
+  let result = []
+  if(num1<num2){
+    for(var i = num1 ; i < num2; i++){
+      arr.push(i);
+    }
+  }else if(num1 > num2) {
+    for(var i = num2; i < num1; i++){
+      arr.push(i);
+    }
+  } else {
+    return false;
+  }
+  arr.filter(ele=>{
+    if(ele % 2 !== 0) {
+      result.push(ele)
+    }
+    return ele >1;
+  })
+  if(result.length >= 3) {
+    return true
+  } else {
+    return false;
+  }
+}
 
 
 /*
@@ -455,11 +474,18 @@ Example:
 If you pass "a", 3, "*" it should return "**a" - that is, a string of length 3, padded on the left by the "*" character
 */
 
-
-
-
-
-
+function leftPad (str, len, fill) {
+  var result = '';
+  var newLen = len - str.length;
+  if(len<=str.length) {
+    return str;
+  } else {
+    for(var i = 0; i < newLen; i++){
+      result += fill;
+    }
+  }
+  return result + str
+}
 
 
 /*
@@ -475,12 +501,13 @@ If you pass "a", 3 it should return "aaa"
 If you pass "b", 3 it should return "bb"
 */
 
-
-
-
-
-
-
+function createString (num, letter) {
+  result = '';
+  for(var i =0; i<num; i++){
+    result += letter
+  }
+  return result;
+}
 
 /*
 ----------------------------------------
@@ -496,13 +523,15 @@ Example:
 If you pass 4 it should return 24 since that's 4 * 3 * 2 * 1
 If you pass 5 it should return 120 since that's 5 * 4 * 3 * 2 * 1
 */
-
-
-
-
-
-
-
+// 
+// function factorial(num, result = 1){
+//   if(num === 0){
+//     return 1
+//   } else {
+//     result *= num;
+//     return factorial(num-1, result)
+//   }
+// }
 
 /*
 ----------------------------------------
