@@ -3,8 +3,8 @@
 SAMPLE
 ----------------------------------------
 
-Challenge: Write function named test that returns the string "This Works!". 
-Solution: This one has already been complete for you. 
+Challenge: Write function named test that returns the string "This Works!".
+Solution: This one has already been complete for you.
 
 */
 
@@ -12,9 +12,6 @@ function test() {
  var string ="This Works!";
  return string;
 }
-
-
-
 /*
 ----------------------------------------
 CHALLENGE
@@ -25,12 +22,11 @@ Write function named sum that will take an array of numbers and return the sum o
 Example: if you pass it [1,2,3] then it should return 6 (which is 1 + 2 + 3)
 */
 
-
-
-
-
-
-
+function sum(array){
+  return array.reduce((sum, value)=> {
+    return sum + value
+  }, 0)
+}
 
 
 /*
@@ -43,13 +39,11 @@ Write function named doubleNumbers that will take an array of numbers and return
 Example: if you pass it [1,2,3] then it should return [2,4,6]
 */
 
-
-
-
-
-
-
-
+function doubleNumbers (array) {
+  return array.map(ele=>{
+    return ele * 2;
+  })
+}
 
 /*
 ----------------------------------------
@@ -66,10 +60,14 @@ Examples:
 */
 
 
-
-
-
-
+function multiplyNumbers (arr, num) {
+  if(arr.length === 0) {
+    return arr;
+  }
+  return arr.map((ele)=>{
+    return ele * num;
+  }, num)
+}
 
 
 
@@ -83,14 +81,17 @@ Write function named doubleLetters that will take a string and double every lett
 Example: if you pass it "abc" then it should return "aabbcc"
 */
 
-
-
-
-
-
-
-
-
+function doubleLetters (string) {
+  if(string.length ===0) {
+    return string;
+  }
+  var arr = string.split('');
+  var result = []
+  arr.forEach(ele=>{
+    return result.push(ele + ele)
+  });
+  return result.join('');
+}
 
 /*
 ----------------------------------------
@@ -104,14 +105,14 @@ Example: if you pass it ["a", "b", "c"] and ["d", "e", "f"] then it should retur
 NOTE: you can assume each input will be the same length
 */
 
-
-
-
-
-
-
-
-
+function interleave (arr1, arr2) {
+  let newArr = [];
+  arr1.forEach((ele,index)=>{
+    newArr.push(ele);
+    newArr.push(arr2[index])
+  })
+  return newArr;
+}
 
 
 /*
@@ -125,10 +126,14 @@ Example: if you pass it 4 and "Hello" then it should return ["Hello", "Hello", "
 */
 
 
-
-
-
-
+function createRange (num, val, arr = []) {
+  if(arr.length === num) {
+    return arr;
+  } else{
+    arr.push(val);
+    return createRange(num, val, arr);
+  }
+}
 
 
 /*
@@ -144,10 +149,13 @@ If you pass it ["quick", "brown", "fox"] then it should return { "quick": 0, "br
 */
 
 
-
-
-
-
+function flipArray (arr) {
+  let obj = {};
+  arr.forEach((ele,index)=> {
+    obj[ele] = index;
+  })
+  return obj;
+}
 
 
 /*
@@ -163,12 +171,13 @@ If you pass it [[2014, "Horse"], [2015, "Sheep"]] then it should return { 2014: 
 
 */
 
-
-
-
-
-
-
+function arraysToObject (arr) {
+  let obj = {};
+  arr.forEach((ele, index)=>{
+    obj[ele[0]]= ele[1];
+  })
+  return obj;
+}
 
 
 /*
@@ -184,14 +193,15 @@ If you pass it "hello" then it should return "olleh"
 */
 
 
-
-
-
-
-
-
-
-
+function reverseString (string, n=string.length, string2='') {
+  if(string.length === string2.length){
+    return string2;
+  } else {
+    string2 +=string[n-1];
+    n--;
+    return reverseString(string, n, string2)
+  }
+}
 
 
 /*
@@ -208,12 +218,18 @@ If you pass it "yay" then it should return false because it's odd
 If you pass it "heehaw" then it should return false because "hee" doesn't equal "haw"
 */
 
-
-
-
-
-
-
+function repeats (string) {
+  var l = string.length
+  var first = string.slice(0, (l/2))
+  var second = string.slice(l/2);
+  if(l%2!==0){
+    return false;
+  } else if (first === second) {
+    return true
+  } else {
+    return false
+  }
+}
 
 /*
 ----------------------------------------
@@ -227,12 +243,16 @@ Example:
 If you pass it "abcdef" then it should return "ace" because those represent every other letter
 */
 
-
-
-
-
-
-
+function everyOther (string) {
+  var newArr = [];
+  var arr = string.split('');
+  arr.forEach((ele,index)=>{
+    if(index%2===0){
+      newArr.push(ele);
+    }
+  })
+  return newArr.join('');
+}
 
 /*
 ----------------------------------------
@@ -247,12 +267,18 @@ If you pass "aaa" it should return true
 If you pass "aba" it should return false
 */
 
+function allEqual (string) {
+  var arr = string.split('');
+  var compare = arr.filter(ele=>{
+    return ele === arr[0]
+  })
 
-
-
-
-
-
+  if(compare.join('').length === string.length) {
+    return true
+  } else {
+    return false
+  }
+}
 
 /*
 ----------------------------------------
@@ -267,11 +293,12 @@ If you pass "45" it should return 9
 If you pass "246" it should return 10
 */
 
-
-
-
-
-
+function sumLetters (str) {
+  var arr = str.split('');
+  return arr.reduce((sum, val)=>{
+    return parseInt(sum) + parseInt(val)
+  },0)
+}
 
 
 /*
@@ -287,13 +314,14 @@ If you pass "you" it should return 2
 */
 
 
-
-
-
-
-
-
-
+function countVowels (string) {
+  let vowels = ['a','e','i','o','u'];
+  let arr = string.split('');
+  var result = arr.filter(ele => {
+    return ele.match(/[aeiou]+/g)
+  })
+  return result.length
+}
 
 /*
 ----------------------------------------
@@ -309,12 +337,16 @@ If you pass "you" it should return ["y", "o", "u"]
 NOTE: do not use the builtin `split` method
 */
 
+function split (str, arr = [], n=str.length) {
+  if(str.length === arr.length) {
+    return arr;
+  } else {
+    arr.unshift(str[n-1]);
+    n--;
+    return split(str, arr, n);
+  }
 
-
-
-
-
-
+}
 
 /*
 ----------------------------------------
@@ -330,11 +362,12 @@ Example:
 If you pass "Hello" it should return [ 72, 101, 108, 108, 111 ]
 */
 
-
-
-
-
-
+function getCodePoints (str) {
+  var arr = str.split('')
+  return arr.map((ele)=>{
+    return ele.codePointAt(0);
+  })
+}
 
 
 /*
@@ -350,11 +383,14 @@ If you pass "Yo" it should return {Y: 0, o: 1}
 If you pass "Hello" it should return {H: 0, e: 1, l: 3, o: 4}
 */
 
-
-
-
-
-
+function letterMap (str) {
+  var obj = {};
+  var arr = str.split('');
+  arr.forEach((ele, index)=>{
+    obj[ele]=index;
+  })
+  return obj;
+}
 
 
 /*
@@ -370,12 +406,19 @@ If you pass "Yo" it should return {Y: 1, o: 1}
 If you pass "Hello" it should return {"H": 1, "e": 1, "l": 2, "o": 1}
 */
 
-
-
-
-
-
-
+function letterCount (string) {
+  let obj = {}
+  let arr = string.split('');
+  arr.forEach(ele =>{
+    let n = 1;
+    if(obj[ele]) {
+      obj[ele] = obj[ele] + 1;
+    } else {
+      obj[ele] = n;
+    }
+  })
+  return obj
+}
 
 
 /*
@@ -794,4 +837,4 @@ If you pass {1999: 4036, 2000: 7654} and 4036, it should return true
 
 
 
-// 
+//
